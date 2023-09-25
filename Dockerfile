@@ -19,10 +19,13 @@ RUN --mount=type=cache,target=/root/.npm \
 WORKDIR /app
 
 # Copy package.json and pnpm-lock.yaml into the image.
-COPY ["package.json", "pnpm-lock.yaml", "./"]
+COPY ["package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml", "./"]
 COPY ["./apps/api/package.json", "./apps/api/"]
+COPY ["./apps/docs/package.json", "./apps/docs/"]
 COPY ["./apps/frontend/package.json", "./apps/frontend/"]
-COPY ["./packages/eslint-config-custom/package.json", "./apps/packages/eslint-config-custom"]
+COPY ["./packages/eslint-config-custom/package.json", "./packages/eslint-config-custom/"]
+COPY ["./packages/tsconfig/package.json", "./packages/tsconfig/"]
+COPY ["./packages/ui/package.json", "./packages/ui/"]
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.local/share/pnpm/store to speed up subsequent builds.

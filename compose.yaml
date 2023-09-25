@@ -12,16 +12,19 @@ services:
     build:
       context: .
     ports:
-      - 5000:5000
-    command: ["/bin/sh", "-c", "pnpm dev"]
+      - 3000:3000
+      - 3001:3001
+      - 3002:3002
+    command: [ "/bin/sh", "-c", "pnpm dev" ]
     volumes:
       - ./:/app
       - /app/node_modules
       - /app/apps/api/node_modules
+      - /app/apps/docs/node_modules
       - /app/apps/frontend/node_modules
       - /app/packages/eslint-config-custom/node_modules
+      - /app/packages/tsconfig/node_modules
       - /app/packages/ui/node_modules
-    volume_name: devsandbox-app
     # The section below defines a PostgreSQL
     # database that the application can use. `depends_on` tells Docker Compose to
     # start the database before your application. The `db-data` volume persists the
@@ -31,11 +34,10 @@ services:
     depends_on:
       db:
         condition: service_healthy
+
   db:
     image: postgres:16.0-alpine3.18
-    container_name: devsandbox-pg
     restart: always
-    user: postgres
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
@@ -45,7 +47,11 @@ services:
     expose:
       - 5432
     healthcheck:
-      test: ["CMD", "pg_isready"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -d $DATABASE_NAME -U $DATABASE_USER"
+        ]
       interval: 10s
       timeout: 5s
       retries: 5

@@ -3,7 +3,7 @@ import pino from "pino-http";
 
 const app = express();
 const logger = pino();
-const port = process.env.API_PORT as string;
+const port = (process.env.API_PORT || "3002") as string;
 
 app.use(logger);
 
