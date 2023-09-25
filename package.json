@@ -1,13 +1,16 @@
 {
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
+    "build": "dotenv turbo run build",
+    "dev": "dotenv turbo run dev",
     "lint": "turbo run lint",
-    "test": "turbo run test",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "test": "dotenv -e .env.test turbo run test",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "api:migrate:create": "dotenv -- pnpm -C ./apps/api migrate:create",
+    "api:migrate:dev": "dotenv -- pnpm -C ./apps/api migrate:dev"
   },
   "devDependencies": {
+    "dotenv-cli": "^7.3.0",
     "eslint": "^8.48.0",
     "prettier": "^3.0.3",
     "tsconfig": "workspace:*",

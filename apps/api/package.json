@@ -6,9 +6,12 @@
     "node": ">= 18"
   },
   "scripts": {
-    "dev": "tsnd --respawn --transpile-only src/main.ts | pino-pretty"
+    "dev": "tsnd --respawn --transpile-only src/main.ts | pino-pretty",
+    "migrate:create": "prisma migrate dev --name",
+    "migrate:dev": "prisma migrate dev"
   },
   "dependencies": {
+    "@prisma/client": "5.3.1",
     "express": ">=5.0.0-beta.1",
     "pino-http": "^8.5.0"
   },
