@@ -18,6 +18,7 @@
 
   --black: #262626;
   --white: #ffffff;
+  --primary: #eaff96;
 
   /* Spacing */
 
@@ -99,4 +100,8 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+body {
+  background-color: var(--black);
 }
