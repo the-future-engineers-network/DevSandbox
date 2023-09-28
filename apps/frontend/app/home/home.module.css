@@ -1,0 +1,36 @@
+/* ========================= Reusable styles - START ===================================== */
+/* Add rules that can be reused across sections here */
+/* ========================= Reusable styles - END ===================================== */
+
+/* ========================= Header section styles - START ===================================== */
+/* TODO: Add header rules here. The first rule has been partially set up for you */
+
+.header {
+  color: var(--white);
+  display: flex;
+}
+
+.header a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* ========================= Header section styles - END ===================================== */
+
+/* ========================= No setup section styles - START ===================================== */
+/* TODO: Add no-setup rules here. The first rule has been partially set up for you */
+
+.noSetup {
+  color: var(--white);
+}
+
+/* ========================= No setup section styles - END ===================================== */
+
+/* ========================= Shareable url section styles - START ===================================== */
+/* TODO: Add shareable-url rules here. The first rule has been partially set up for you */
+
+.shareableUrls {
+  color: var(--white);
+}
+
+/* ========================= Shareable url section styles - END ===================================== */
