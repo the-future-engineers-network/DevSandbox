@@ -7,7 +7,6 @@ import styles from "./home.module.css";
     /*CHENEDU I GET  THIS ERROR WHILE TRYING TO USE THE IMPORT FILE METHOD
 * <You may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders> (Source code omitted for this binary file)
 */}
-// import no_setup_video from "./assets/nosetup.mp4"
 
 
 export function Home(): JSX.Element {
@@ -38,12 +37,8 @@ export function Home(): JSX.Element {
             </p>
           </div>
           <div className={styles.noSetup_video}>
-            <video width="100%" height="100%" muted>
-              {/* <source src="" type="video/webm" /> */}
-              {/* Video Not playing */}
-              <source src="./assets/nosetup.mp4" type="video/mp4" />
-              {/*  Couldnt use it cause of the error*/}
-              {/* <source src={no_setup_video} type="video/mp4" /> */}
+            <video width="100%" height="100%" muted autoPlay loop>
+              <source src="/nosetup.mp4" type="video/mp4" />
             </video>
 
           </div>
