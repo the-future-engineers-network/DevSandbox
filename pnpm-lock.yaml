@@ -126,13 +126,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/tsconfig
       typescript:
-<<<<<<< HEAD
-        specifier: ^4.5.3
-        version: 4.9.5
-=======
         specifier: ^5.2.2
         version: 5.2.2
->>>>>>> c6cb41000137e7a40f79641f73c2fd88d8980e67
 
   packages/eslint-config-custom:
     devDependencies:
