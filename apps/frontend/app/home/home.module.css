@@ -170,7 +170,7 @@
 
 @media(max-width:1500px) {
   .shareableUrls>h2 {
-    font-size: calc(var(--xx-large + --small))
+    font-size: calc(var(--xx-large + --small));
   }
 }
 
