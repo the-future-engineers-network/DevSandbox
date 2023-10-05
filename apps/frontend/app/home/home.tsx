@@ -171,7 +171,6 @@ export function Home(): JSX.Element {
         </section>
 
         <section className={styles.shareableUrls}>
-          {/* TODO: Add shareableURls content here. The first bit of content has been set up for you. */}
           <ShareIcon height={90} width={90} className={styles.shareIcon} />
           <p onClick={handleProgressBar2}>Shareable URLs</p>
           <h2>Get instant <br /> feedback, the <br /> easy way.</h2>
@@ -180,13 +179,11 @@ export function Home(): JSX.Element {
               <img src={currentImage.src} alt="share a link" />
             </div>
             <div>
-              {/* first one here */}
               <div className={styles.share_a_link} onMouseOver={handleProgressBar1} id={styles[progressBar1.active.toString()]}>
                 <div className={styles.progressBarContainer}>
                   <div style={progressBar1Width}></div>
                 </div>
                 <LinkIcon height={27} width={27} />
-                {/* <ShareIcon height={27} width={27} /> */}
                 <div className={styles.share_a_link_content}>
                   <h2>Share a link</h2>
                   <p>
@@ -195,7 +192,6 @@ export function Home(): JSX.Element {
                   </p>
                 </div>
               </div>
-              {/* second one here */}
               <div className={styles.share_a_link} onMouseOver={handleProgressBar2} id={styles[progressBar2.active.toString()]}>
                 <div className={styles.progressBarContainer}>
                   <div className={styles.pop} style={progressBar2Width}></div>
@@ -209,7 +205,6 @@ export function Home(): JSX.Element {
                   </p>
                 </div>
               </div>
-              {/* Third one here */}
               <div className={styles.share_a_link} onMouseOver={handleProgressBar3} id={styles[progressBar3.active.toString()]}>
                 <div className={styles.progressBarContainer}>
                   <div style={progressBar3Width}></div>
