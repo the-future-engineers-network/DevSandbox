@@ -22,7 +22,7 @@ export function Home(): JSX.Element {
         <section className={styles.noSetup}>
           {/* TODO: Add no setup content here. The first bit of content has been set up for you. */}
           <h2>
-            No setup. <span>One click and start coding.</span>
+            No setup. <span>One click and start coding auto refresh.</span>
           </h2>
           <p>
             Start coding instantly without worrying about the configuration. Our
