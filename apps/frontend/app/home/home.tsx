@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ShareIcon, GroupIcon, LinkIcon, ClickIcon } from "../icons";
+import { ShareIcon, GroupIcon, LinkIcon, ClickIcon, ArrowIcon } from "../icons";
 import styles from "./home.module.css";
 
 
@@ -65,46 +65,20 @@ export function Home(): JSX.Element {
     }
   }
   function handleImageSwitch(id: number): void {
-    if (id === 1) {
+    setCurrentImage({
+      ...currentImage,
+      className: 'trim',
+    });
+    setTimeout(() => {
       setCurrentImage({
-        ...currentImage,
-        className: 'trim',
+        src: sharableImages[id - 1],
+        className: 'animatedContainer'
       });
-      setTimeout(() => {
-        setCurrentImage({
-          src: sharableImages[0],
-          className: 'animatedContainer'
-        });
-      }, 300);
-    }
-    else if (id === 2) {
-      setCurrentImage({
-        ...currentImage,
-        className: 'trim',
-      });
-      setTimeout(() => {
-        setCurrentImage({
-          src: sharableImages[1],
-          className: 'animatedContainer'
-        });
-      }, 100);
-    }
-    else if (id === 3) {
-      setCurrentImage({
-        ...currentImage,
-        className: 'trim'
-      });
-      setTimeout(() => {
-        setCurrentImage({
-          src: sharableImages[2],
-          className: 'animatedContainer'
-        })
-      }, 100);
-    }
+    }, 300);
   }
 
   useEffect(() => {
-    const id = setInterval(handleProgressBars,25)
+    const id = setInterval(handleProgressBars, 35);
     return () => {
       clearInterval(id);
     };
@@ -112,15 +86,15 @@ export function Home(): JSX.Element {
   useEffect(() => {
     if (progressBar1.active) {
       handleImageSwitch(1);
-      return
+      return;
     }
     else if (progressBar2.active) {
       handleImageSwitch(2);
-      return
+      return;
     }
     else if (progressBar3.active) {
       handleImageSwitch(3);
-      return
+      return;
     }
   }, [progressBar1.active, progressBar2.active, progressBar3.active])
   // progressbarwidth 1 to 3 for the bar increment
@@ -184,12 +158,12 @@ export function Home(): JSX.Element {
               <img src={currentImage.src} alt="share a link" />
             </div>
             <div>
-              <div className={styles.share_a_link} onMouseOver={handleProgressBar1} onFocus={handleProgressBar1} id={styles[progressBar1.active.toString()]}>
+              <div onMouseOver={handleProgressBar1} onFocus={handleProgressBar1} id={styles[progressBar1.active.toString()]}>
                 <div className={styles.progressBarContainer}>
                   <div style={progressBar1Width}></div>
                 </div>
                 <LinkIcon height={27} width={27} />
-                <div className={styles.share_a_link_content}>
+                <div className={styles.shareALinkContent}>
                   <h2>Share a link</h2>
                   <p>
                     Forget sharing screenshots and copy-pasting code snippets.
@@ -197,12 +171,12 @@ export function Home(): JSX.Element {
                   </p>
                 </div>
               </div>
-              <div className={styles.share_a_link} onMouseOver={handleProgressBar2} onFocus={handleProgressBar2} id={styles[progressBar2.active.toString()]}>
+              <div onMouseOver={handleProgressBar2} onFocus={handleProgressBar2} id={styles[progressBar2.active.toString()]}>
                 <div className={styles.progressBarContainer}>
                   <div className={styles.pop} style={progressBar2Width}></div>
                 </div>
                 <ClickIcon height={27} width={27} />
-                <div className={styles.share_a_link_content}>
+                <div className={styles.shareALinkContent}>
                   <h2>Share the context</h2>
                   <p>
                     Those opening your sandbox will see your code running along with any tests,
@@ -210,12 +184,12 @@ export function Home(): JSX.Element {
                   </p>
                 </div>
               </div>
-              <div className={styles.share_a_link} onMouseOver={handleProgressBar3} onFocus={handleProgressBar3} id={styles[progressBar3.active.toString()]}>
+              <div onMouseOver={handleProgressBar3} onFocus={handleProgressBar3} id={styles[progressBar3.active.toString()]}>
                 <div className={styles.progressBarContainer}>
                   <div style={progressBar3Width}></div>
                 </div>
                 <GroupIcon height={27} width={27} />
-                <div className={styles.share_a_link_content}>
+                <div className={styles.shareALinkContent}>
                   <h2>Powerful collaboration</h2>
                   <p>
                     Get async feedback through comments or host live coding
@@ -223,7 +197,7 @@ export function Home(): JSX.Element {
                   </p>
                 </div>
               </div>
-              <Link href={'/s'} className={styles.getstarted}>Get Started {'>'}</Link>
+              <Link href={'/s'} className={styles.getStarted}><h3>Get Started <ArrowIcon /></h3></Link>
             </div>
           </div>
         </section>

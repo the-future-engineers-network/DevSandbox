@@ -27,11 +27,10 @@
 /* ========================= No setup section styles - END ===================================== */
 
 /* ========================= Shareable url section styles - START ===================================== */
-/* TODO: Add shareable-url rules here. The first rule has been partially set up for you */
 
 .shareableUrls {
   color: var(--white);
-  background-color: rgb(14, 14, 14);
+  background-color: var(--dark);
   padding-top: var(--spacer-9);
   padding-bottom: var(--spacer-12);
 }
@@ -123,17 +122,17 @@
   background-color: var(--primary);
 }
 
-.share_a_link_content {
+.shareALinkContent{
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.share_a_link_content>h2 {
+.shareALinkContent>h2 {
   font-size: var(--large);
 }
 
-.share_a_link_content>p {
+.shareALinkContent>p {
   font-size: var(--medium);
 }
 
@@ -148,11 +147,11 @@
 }
 
 
-.fade-in-image {
+.fadeInImage {
   animation: fadeIn 3s;
 }
 
-.getstarted {
+.getStarted {
   color: var(--primary);
   text-decoration: none;
   font-size: var(--medium);
