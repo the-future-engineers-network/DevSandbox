@@ -59,7 +59,7 @@
   gap: var(--spacer-12);
 }
 
-.slideContainer>img {
+.slideContainer > img {
   width: fit-content;
   height: 70vh;
 }
