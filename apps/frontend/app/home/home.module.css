@@ -239,13 +239,6 @@
 /* ========================= No setup section styles - START ===================================== */
 /* TODO: Add no-setup rules here. The first rule has been partially set up for you */
 
-/* Screen sizes */
-/* 0-550px — Mobile */
-/* 551-1100px — Tablet */
-/* 1101-1500px — Laptop */
-/* 1501+px — Desktop */
-
-/* Recurring Sytles */
 .noSetup {
   background-image: radial-gradient(
     circle at center,
@@ -259,41 +252,45 @@
   padding: var(--spacer-4);
   display: grid;
   grid-template-areas:
-    'info'
-    'video';
+    "info"
+    "video";
   grid-gap: var(--spacer-4);
 }
+
 .noSetup .info {
   display: flex;
   grid-area: info;
   flex-direction: column;
   gap: var(--spacer-2);
 }
+
 .noSetup .info h2 {
   display: flex;
   flex-direction: column;
   word-spacing: -5px;
-  font-size: var(--larger);
   font-weight: 500;
+  font-size: var(--xx-large);
 }
-.noSetup .info h2 span {
+
+.infoNote {
   opacity: 0.5;
 }
+
 .noSetup .info p {
   display: flex;
   flex-direction: column;
   font-weight: 400;
-  width: 320px;
+  width: 300px;
   font-size: var(--medium);
 }
-.noSetup .info p span {
+
+.infoNote {
   opacity: 0.5;
 }
 
-/* My video Element is on the site but am having issue with the rendering  */
-.noSetup .noSetup_video {
+.noSetup .noSetupVideo {
   width: 100%;
-  max-height:100vh;
+  max-height: 100vh;
   grid-area: video;
   display: flex;
   flex-direction: column;
@@ -301,11 +298,12 @@
   position: relative;
 }
 
-.noSetup .noSetup_video video {
+.noSetup .noSetupVideo video {
   width: 100%;
 }
-.noSetup .noSetup_video::after {
-  content: '';
+
+.noSetup .noSetupVideo::after {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -313,29 +311,6 @@
   height: 100%;
   background: rgba(255, 255, 255, 0);
 }
-
-/* Mobile Sytles */
-
-@media screen and (max-width: 550px) {
-}
-
-/* Tablet Sytles 551-1100px */
-
-@media screen and (min-width: 551px) and (max-width: 1100px) {
-  .noSetup .info h2 {
-    display: flex;
-    flex-direction: column;
-    font-size: var(--xx-large);
-    word-spacing: -5px;
-    font-weight: 500;
-  }
-  .noSetup .info p {
-    width: 300px;
-    font-size: var(--medium);
-  }
-}
-
-/* Laptop Sytles 1101 and above */
 
 @media screen and (min-width: 1101px) {
   .noSetup .info {
@@ -348,6 +323,7 @@
     justify-content: left;
     align-items: flex-end;
   }
+
   .noSetup .info h2 {
     display: flex;
     flex-direction: column;
@@ -356,6 +332,7 @@
     word-spacing: -8px;
     font-weight: 500;
   }
+
   .noSetup .info p {
     width: 100%;
     max-width: 320px;
