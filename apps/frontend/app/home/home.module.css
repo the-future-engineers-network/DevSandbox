@@ -47,7 +47,7 @@
   text-align: center;
 }
 
-.shareableUrls>h2 {
+.shareableUrls > h2 {
   font-size: calc(var(--xx-large) + var(--xx-large));
   text-align: center;
   margin-top: var(--spacer-1);
