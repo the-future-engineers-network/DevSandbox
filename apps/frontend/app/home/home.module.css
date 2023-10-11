@@ -80,7 +80,7 @@
   animation: fadeIn 3s;
 }
 
-.trim>img {
+.trim > img {
   height: 100%;
   min-width: fit-content;
   position: absolute;
