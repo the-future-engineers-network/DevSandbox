@@ -127,7 +127,7 @@
   gap: 10px;
 }
 
-.shareALinkContent>h2 {
+.shareALinkContent > h2 {
   font-size: var(--large);
 }
 
