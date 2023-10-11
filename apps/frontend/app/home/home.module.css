@@ -115,7 +115,7 @@
   background-color: rgb(255, 255, 255, 0.2);
 }
 
-.progressBarContainer>div {
+.progressBarContainer > div {
   width: 5%;
   height: 100%;
   background-color: var(--primary);
