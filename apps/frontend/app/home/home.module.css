@@ -94,7 +94,7 @@
   right: 0;
 }
 
-.slideContainer>div {
+.slideContainer > div {
   width: 420px;
   display: flex;
   flex-direction: column;
