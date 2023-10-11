@@ -24,14 +24,14 @@ export function Home(): JSX.Element {
         <section className={styles.noSetup}>
           <div className={styles.info}>
             <h2>
-              No setup. <span>One click and start coding.</span>
+              No setup. <span className={styles.infoNestedHeader}>One click and start coding.</span>
             </h2>
             <p>
               Start coding instantly without worrying about the configuration.
               <span className={styles.infoNote}> Our sandboxes have everything you need: dev servers, unit tests, Storybook and other devtools.</span>
             </p>
           </div>
-          <div className={styles.noSetupVideo}>
+          <div className={styles.noSetupVideoContainer}>
             <video width="100%" height="100%" muted autoPlay loop>
               <source src="/nosetup.mp4" type="video/mp4" />
             </video>
