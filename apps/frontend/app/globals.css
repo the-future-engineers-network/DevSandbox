@@ -13,13 +13,18 @@
   --larger: calc(var(--large) * var(--typescale-ratio));
   --x-large: calc(var(--larger) * var(--typescale-ratio));
   --xx-large: calc(var(--x-large) * var(--typescale-ratio));
+  --xxx-large: calc(var(--xx-large) * var(--typescale-ratio));
+  --xxx-large-1: calc(var(--xxx-large) * var(--typescale-ratio));
+  --xxx-large-2: calc(var(--xxx-large-1) * var(--typescale-ratio));
 
   /* Colors */
 
   --black: #262626;
-  --dark : #000000;
+  --black-900: #000000;
   --white: #ffffff;
   --primary: #eaff96;
+  --transparent-light-grey : rgb(255, 255, 255, 0.2);
+
 
   /* Spacing */
 

@@ -1,128 +1,116 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ShareIcon, GroupIcon, LinkIcon, ClickIcon, ArrowIcon } from "../icons";
+import { ArrowIcon, ClickIcon, GroupIcon, LinkIcon, ShareIcon } from "../icons";
 import styles from "./home.module.css";
 
-
+interface ProgressBar {
+  value: number;
+  active: boolean;
+}
 export function Home(): JSX.Element {
-  interface ProgressBar {
-    value: number,
-    active: boolean,
-    id: string
-  }
-
-  const sharableImages = ['https://codesandbox.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fshareurl.893368b4.png&w=3840&q=90',
-    'https://codesandbox.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcontext.8f168907.png&w=3840&q=90',
-    'https://codesandbox.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcomment.88e38d48.png&w=3840&q=90']
+  const commentImage = "/comment.webp";
+  const contextImage = "/context.webp";
+  const shareImage = "/shareurl.webp";
+  const sharableImages = [shareImage, contextImage, commentImage];
   const [currentImage, setCurrentImage] = useState({
-    className: 'trim',
-    src: sharableImages[0]
+    className: "trim",
+    src: sharableImages[0],
   });
-  const [progressBar1, setprogressBar1] = useState<ProgressBar>({
-    value: 0,
-    active: true,
-    id: 'active'
-  });
-  const [progressBar2, setprogressBar2] = useState<ProgressBar>({
-    value: 0,
-    active: false,
-    id: 'inactive'
-  });
-  const [progressBar3, setprogressBar3] = useState<ProgressBar>({
-    value: 0,
-    active: false,
-    id: 'inactive'
-  });
+  const [progressBars, setProgressBars] = useState<ProgressBar[]>([
+    { value: 0, active: true },
+    { value: 0, active: false },
+    { value: 0, active: false },
+  ]);
 
+  const updateProgressBar = (
+    index: number,
+    newValue: number,
+    newActive: boolean
+  ): void => {
+    setProgressBars((prevProgressBars) => {
+      const updatedProgressBars = [...prevProgressBars];
+      updatedProgressBars[index] = {
+        ...updatedProgressBars[index],
+        active: newActive,
+        value: newValue,
+      };
+      return updatedProgressBars;
+    });
+  };
   function handleProgressBars(): void {
-    if (progressBar1.value <= 100 && progressBar1.active) {
-      setprogressBar1({ ...progressBar1, value: progressBar1.value + 0.5 });
+    if (progressBars[0].value <= 100 && progressBars[0].active) {
+      updateProgressBar(0, progressBars[0].value + 0.5, true);
+    } else {
+      updateProgressBar(0, 0, false);
+      updateProgressBar(1, progressBars[1].value, true);
     }
-    else {
-      setprogressBar1({ ...progressBar1, value: 0, active: false });
-      setprogressBar2({ ...progressBar2, active: true });
-    }
-    if (progressBar1.active) {
+    if (progressBars[0].active) {
       return;
     }
-    if (progressBar2.value <= 100 && progressBar2.active) {
-      setprogressBar2({ ...progressBar2, value: progressBar2.value + 0.5 });
+    if (progressBars[1].value <= 100 && progressBars[1].active) {
+      updateProgressBar(1, progressBars[1].value + 0.5, true);
+    } else {
+      updateProgressBar(1, 0, false);
+      updateProgressBar(2, progressBars[2].value + 0.5, true);
     }
-    else {
-      setprogressBar2({ ...progressBar2, value: 0, active: false });
-      setprogressBar3({ ...progressBar3, active: true });
-    }
-    if (progressBar2.active) {
+    if (progressBars[1].active) {
       return;
     }
-    if (progressBar3.value <= 100 && progressBar3.active) {
-      setprogressBar3({ ...progressBar3, value: progressBar3.value + 0.5 });
-    }
-    else {
-      setprogressBar3({ ...progressBar3, value: 0, active: false });
-      setprogressBar1({ ...progressBar1, active: true });
+    if (progressBars[2].value <= 100 && progressBars[2].active) {
+      updateProgressBar(2, progressBars[2].value + 0.5, true);
+    } else {
+      updateProgressBar(2, 0, false);
+      updateProgressBar(0, progressBars[0].value + 0.5, true);
     }
   }
   function handleImageSwitch(id: number): void {
     setCurrentImage({
       ...currentImage,
-      className: 'trim',
+      className: "trim",
     });
     setTimeout(() => {
       setCurrentImage({
         src: sharableImages[id - 1],
-        className: 'animatedContainer'
+        className: "animatedContainer",
       });
     }, 300);
   }
-
   useEffect(() => {
     const id = setInterval(handleProgressBars, 35);
     return () => {
       clearInterval(id);
     };
-  }, [progressBar1, progressBar2, progressBar3]);
+  });
+
   useEffect(() => {
-    if (progressBar1.active) {
+    if (progressBars[0].active) {
       handleImageSwitch(1);
-      return;
-    }
-    else if (progressBar2.active) {
+    } else if (progressBars[1].active) {
       handleImageSwitch(2);
-      return;
-    }
-    else if (progressBar3.active) {
+    } else if (progressBars[2].active) {
       handleImageSwitch(3);
-      return;
     }
-  }, [progressBar1.active, progressBar2.active, progressBar3.active])
-  // progressbarwidth 1 to 3 for the bar increment
+  }, [progressBars[0].active, progressBars[1].active, progressBars[2].active]);
+
   const progressBar1Width = {
-    width: progressBar1.value + '%'
-  }
+    width: `${progressBars[0].value}%`,
+  };
   const progressBar2Width = {
-    width: progressBar2.value + '%'
-  }
+    width: `${progressBars[1].value}%`,
+  };
   const progressBar3Width = {
-    width: progressBar3.value + '%'
-  }
-  // handleprogressbar1 to 3 for mouseovers
-  const handleProgressBar1 = () => {
-    setprogressBar1({ ...progressBar1, active: true });
-    setprogressBar2({ ...progressBar2, active: false, value: 0 });
-    setprogressBar3({ ...progressBar3, active: false, value: 0 });
-  }
-  const handleProgressBar2 = () => {
-    setprogressBar1({ ...progressBar1, active: false, value: 0 });
-    setprogressBar2({ ...progressBar2, active: true });
-    setprogressBar3({ ...progressBar3, active: false, value: 0 });
-  }
-  const handleProgressBar3 = () => {
-    setprogressBar1({ ...progressBar1, active: false, value: 0 });
-    setprogressBar2({ ...progressBar2, active: false, value: 0 });
-    setprogressBar3({ ...progressBar3, active: true });
-  }
+    width: `${progressBars[2].value}%`,
+  };
+
+  const handleProgressBar = (index: number): void => {
+    const updates = [0, 0, 0];
+    updates[index] = progressBars[index].value + 0.5;
+    updateProgressBar(0, updates[0], index === 0);
+    updateProgressBar(1, updates[1], index === 1);
+    updateProgressBar(2, updates[2], index === 2);
+  };
+
   return (
     <>
       <header className={styles.header}>
@@ -150,54 +138,87 @@ export function Home(): JSX.Element {
         </section>
 
         <section className={styles.shareableUrls}>
-          <ShareIcon height={90} width={90} className={styles.shareIcon} />
+          <ShareIcon className={styles.shareIcon} height={90} width={90} />
           <p>Shareable URLs</p>
-          <h2>Get instant <br /> feedback, the <br /> easy way.</h2>
+          <h2>
+            Get instant <br /> feedback, the <br /> easy way.
+          </h2>
           <div className={styles.slideContainer}>
             <div className={styles[currentImage.className]}>
-              <img src={currentImage.src} alt="share a link" />
+              <img alt="share a link" src={currentImage.src} />
             </div>
-            <div>
-              <div onMouseOver={handleProgressBar1} onFocus={handleProgressBar1} id={styles[progressBar1.active.toString()]}>
+            <div className={styles.slider}>
+              <div
+                className={styles[progressBars[0].active.toString()]}
+                onFocus={() => {
+                  handleProgressBar(0);
+                }}
+                onMouseOver={() => {
+                  handleProgressBar(0);
+                }}
+              >
                 <div className={styles.progressBarContainer}>
-                  <div style={progressBar1Width}></div>
+                  <div style={progressBar1Width} />
                 </div>
                 <LinkIcon height={27} width={27} />
                 <div className={styles.shareALinkContent}>
                   <h2>Share a link</h2>
                   <p>
                     Forget sharing screenshots and copy-pasting code snippets.
-                    Get instant feedback on your code by sharing the URL of your sandbox with anyone.
+                    Get instant feedback on your code by sharing the URL of your
+                    sandbox with anyone.
                   </p>
                 </div>
               </div>
-              <div onMouseOver={handleProgressBar2} onFocus={handleProgressBar2} id={styles[progressBar2.active.toString()]}>
+              <div
+                className={styles[progressBars[1].active.toString()]}
+                onFocus={() => {
+                  handleProgressBar(1);
+                }}
+                onMouseOver={() => {
+                  handleProgressBar(1);
+                }}
+              >
                 <div className={styles.progressBarContainer}>
-                  <div className={styles.pop} style={progressBar2Width}></div>
+                  <div className={styles.pop} style={progressBar2Width} />
                 </div>
                 <ClickIcon height={27} width={27} />
                 <div className={styles.shareALinkContent}>
                   <h2>Share the context</h2>
                   <p>
-                    Those opening your sandbox will see your code running along with any tests,
-                    Storybook, or tasks you configured. No need to set up anything.
+                    Those opening your sandbox will see your code running along
+                    with any tests, Storybook, or tasks you configured. No need
+                    to set up anything.
                   </p>
                 </div>
               </div>
-              <div onMouseOver={handleProgressBar3} onFocus={handleProgressBar3} id={styles[progressBar3.active.toString()]}>
+              <div
+                className={styles[progressBars[2].active.toString()]}
+                onFocus={() => {
+                  handleProgressBar(2);
+                }}
+                onMouseOver={() => {
+                  handleProgressBar(2);
+                }}
+              >
                 <div className={styles.progressBarContainer}>
-                  <div style={progressBar3Width}></div>
+                  <div style={progressBar3Width} />
                 </div>
                 <GroupIcon height={27} width={27} />
                 <div className={styles.shareALinkContent}>
                   <h2>Powerful collaboration</h2>
                   <p>
                     Get async feedback through comments or host live coding
-                    sessions to learn together and guide others through the code.
+                    sessions to learn together and guide others through the
+                    code.
                   </p>
                 </div>
               </div>
-              <Link href={'/s'} className={styles.getStarted}><h3>Get Started <ArrowIcon /></h3></Link>
+              <Link className={styles.getStarted} href="#">
+                <h3>
+                  Get Started <ArrowIcon />
+                </h3>
+              </Link>
             </div>
           </div>
         </section>
