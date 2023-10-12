@@ -63,6 +63,9 @@ export function Home(): JSX.Element {
       updateProgressBar(2, 0, false);
       updateProgressBar(0, progressBars[0].value + 0.5, true);
     }
+    if (progressBars[2].active) {
+      return;
+    }
   }
   function handleImageSwitch(id: number): void {
     setCurrentImage({
@@ -84,12 +87,10 @@ export function Home(): JSX.Element {
   });
 
   useEffect(() => {
-    if (progressBars[0].active) {
-      handleImageSwitch(1);
-    } else if (progressBars[1].active) {
-      handleImageSwitch(2);
-    } else if (progressBars[2].active) {
-      handleImageSwitch(3);
+    for (let i = 0; i <= 2; i++) {
+      if (progressBars[i].active) {
+        handleImageSwitch(i + 1);
+      }
     }
   }, [progressBars[0].active, progressBars[1].active, progressBars[2].active]);
 
@@ -214,7 +215,11 @@ export function Home(): JSX.Element {
                   </p>
                 </div>
               </div>
-              <Link href='#' className={styles.getStarted}><h3>Get Started <ArrowIcon /></h3></Link>
+              <Link href="#" className={styles.getStarted}>
+                <h3>
+                  Get Started <ArrowIcon />
+                </h3>
+              </Link>
             </div>
           </div>
         </section>
