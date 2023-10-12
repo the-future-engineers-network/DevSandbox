@@ -214,11 +214,7 @@ export function Home(): JSX.Element {
                   </p>
                 </div>
               </div>
-              <Link className={styles.getStarted} href="#">
-                <h3>
-                  Get Started <ArrowIcon />
-                </h3>
-              </Link>
+              <Link href='#' className={styles.getStarted}><h3>Get Started <ArrowIcon /></h3></Link>
             </div>
           </div>
         </section>

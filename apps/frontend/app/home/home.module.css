@@ -37,9 +37,8 @@
 
 .shareIcon {
   display: block;
-  margin: auto;
+  margin: auto auto var(--spacer-1);
   text-align: center;
-  margin-bottom: var(--spacer-1);
 }
 
 .shareableUrls > p {
@@ -51,6 +50,7 @@
   font-size: var(--xxx-large-2);
   text-align: center;
   margin-top: var(--spacer-1);
+  text-align: center;
 }
 
 .slideContainer {
