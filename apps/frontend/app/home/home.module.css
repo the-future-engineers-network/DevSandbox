@@ -1,19 +1,86 @@
-/* ========================= Reusable styles - START ===================================== */
-/* Add rules that can be reused across sections here */
-/* ========================= Reusable styles - END ===================================== */
-
-/* ========================= Header section styles - START ===================================== */
-/* TODO: Add header rules here. The first rule has been partially set up for you */
-
 .header {
   color: var(--white);
   display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-scale) * 2);
+}
+
+.header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: sticky;
+  top: 0;
 }
 
 .header a {
   color: var(--white);
   text-decoration: none;
 }
+
+.navOne {
+  display: flex;
+  gap: calc(var(--space-scale) * 2);
+  padding-top: 0.625rem;
+}
+
+.navOne :link {
+  color: #808080;
+  transition: ease 0.5s;
+}
+
+.navOne :link:hover {
+  color: #ffffff;
+}
+
+.navTwo {
+  display: flex;
+  gap: calc(var(--space-scale) * 2);
+  margin-left: 5rem;
+  padding-top: 0.625rem;
+}
+
+.navTwo :link {
+  color: #808080;
+  transition: ease 0.5s;
+}
+
+.navTwo :link:hover {
+  color: #ffffff;
+}
+
+.navTwo button {
+  color: var(--black);
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--primary);
+}
+
+.navThree :link {
+  display: flex;
+  gap: calc(var(--space-scale) * 3);
+  color: #808080;
+}
+
+.navThree button {
+  border-radius: 20px;
+  background-color: #644ed7;
+  color: var(--white);
+  border: none;
+}
+
+.navFour :link {
+  color: var(--primary);
+  margin-left: 9.375rem;
+}
+
+.navFour :link:hover {
+  color: #f5fadc;
+  text-decoration: underline;
+}
+
 
 /* ========================= Header section styles - END ===================================== */
 

@@ -7,15 +7,33 @@ export function Home(): JSX.Element {
   return (
     <>
       <header className={styles.header}>
-        {/* TODO: Add header content here. The first bit of content has been set up for you.  */}
         <nav>
-          <Link href="/">
+           <div className={styles.navOne}>
+            <Link href="/">
             <Image alt="logo" height={24} src="/logo.svg" width={24} />
           </Link>
-
+            <Link href="#">Features</Link>
+            <Link href="#">Use Cases</Link>
+            <Link href="#">iOs</Link>
+            <Link href="#">Discover</Link>
+            <Link href="#">Docs</Link>
+            <Link href="#">Support</Link>
+            <Link href="#">Blogs</Link>
+            <Link href="#">Pricing</Link>
+          </div>
+          <div className={styles.navTwo}>
           <Link href="#">Sign in</Link>
-          <Link href="#">Try for free</Link>
+          <Link href="#"><button type="submit">Try for free</button></Link>
+          </div>
+      
         </nav>
+        <nav>
+          <div className={styles.navThree}>
+            <Link href="#"><button type="submit">New</button>Meet Boxy, your new AI coding assistant. Available to pro subscribers.</Link>
+          </div>
+          <div className={styles.navFour}><Link href="#">Learn more</Link></div>
+        </nav>
+      
       </header>
 
       <main>
