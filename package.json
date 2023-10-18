@@ -7,11 +7,13 @@
     "test": "dotenv -e .env.test turbo run test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "api:migrate:create": "dotenv -- pnpm -C ./apps/api migrate:create",
-    "api:migrate:dev": "dotenv -- pnpm -C ./apps/api migrate:dev"
+    "api:migrate:dev": "dotenv -- pnpm -C ./apps/api migrate:dev",
+    "prettier": "prettier ./apps --check"
   },
   "devDependencies": {
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.51.0",
+    "husky": "^8.0.0",
     "prettier": "^3.0.3",
     "tsconfig": "workspace:*",
     "turbo": "latest",
