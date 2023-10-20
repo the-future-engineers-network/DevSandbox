@@ -1,41 +1,41 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 {
-	"name": "DevSandbox",
-	"dockerComposeFile": "docker-compose.dev.yml",
-	"service": "app",
-	"workspaceFolder": "/app",
-	"forwardPorts": [
-		3000, // frontend
-		3001, // docs
-		3002 // api
-	],
-	"remoteUser": "root",
-	"postCreateCommand": "./.devcontainer/boot.sh",
-	"features": {
-		"ghcr.io/devcontainers/features/git:1": {},
-		"ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {},
-		"ghcr.io/devcontainers-contrib/features/pnpm:2": {},
-		"ghcr.io/devcontainers-contrib/features/ts-node:1": {},
-		"ghcr.io/devcontainers-contrib/features/turborepo-npm:1": {},
-		"ghcr.io/devcontainers-contrib/features/typescript:2": {},
-		"ghcr.io/devcontainers-community/npm-features/prettier:1": {}
-	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"dbaeumer.vscode-eslint",
-				"esbenp.prettier-vscode",
-				"rvest.vs-code-prettier-eslint",
-				"ritwickdey.LiveServer"
-			],
-			"settings": {
-				"files.autoSave": "onFocusChange",
-				"editor.formatOnPaste": true,
-				"editor.formatOnSave": true,
-				"editor.tabSize": 2,
-				"editor.linkedEditing": true,
-				"html.format.contentUnformatted": ""
-			}
-		}
-	}
+  "name": "DevSandbox",
+  "dockerComposeFile": "docker-compose.dev.yml",
+  "service": "app",
+  "workspaceFolder": "/app",
+  "forwardPorts": [
+    3000, // frontend
+    3001, // docs
+    3002 // api
+  ],
+  "remoteUser": "root",
+  "postCreateCommand": "./.devcontainer/boot.sh",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {},
+    "ghcr.io/devcontainers-contrib/features/pnpm:2": {},
+    "ghcr.io/devcontainers-contrib/features/ts-node:1": {},
+    "ghcr.io/devcontainers-contrib/features/turborepo-npm:1": {},
+    "ghcr.io/devcontainers-contrib/features/typescript:2": {},
+    "ghcr.io/devcontainers-community/npm-features/prettier:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "rvest.vs-code-prettier-eslint",
+        "ritwickdey.LiveServer"
+      ],
+      "settings": {
+        "files.autoSave": "onFocusChange",
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+        "editor.linkedEditing": true,
+        "html.format.contentUnformatted": ""
+      }
+    }
+  }
 }
