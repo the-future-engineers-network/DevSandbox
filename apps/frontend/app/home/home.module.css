@@ -47,7 +47,7 @@
 }
 
 .shareableUrls > h2 {
-  font-size: var(--xxx-large-2);
+  font-size: var(--xxx-large-1);
   text-align: center;
   margin-top: var(--spacer-1);
   text-align: center;
@@ -136,12 +136,12 @@
   font-size: var(--medium);
 }
 
-.true {
+.active {
   opacity: 1 !important;
   transition: opacity 0.2s ease-in-out 0.2s;
 }
 
-.false {
+.inactive {
   opacity: 0.5;
   transition: opacity 0.2s ease-in-out 0.2s;
 }

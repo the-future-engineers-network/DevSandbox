@@ -4,69 +4,40 @@ import Link from "next/link";
 import { ArrowIcon, ClickIcon, GroupIcon, LinkIcon, ShareIcon } from "../icons";
 import styles from "./home.module.css";
 
-interface ProgressBar {
-  value: number;
-  active: boolean;
-}
 export function Home(): JSX.Element {
-  const commentImage = "/comment.webp";
-  const contextImage = "/context.webp";
-  const shareImage = "/shareurl.webp";
-  const sharableImages = [shareImage, contextImage, commentImage];
+  const sharableImages = ["/shareurl.webp", "/context.webp", "/comment.webp"];
   const [currentImage, setCurrentImage] = useState({
     className: "trim",
     src: sharableImages[0],
   });
-  const [progressBars, setProgressBars] = useState<ProgressBar[]>([
-    { value: 0, active: true },
-    { value: 0, active: false },
-    { value: 0, active: false },
-  ]);
-
-  const updateProgressBar = (
-    index: number,
-    newValue: number,
-    newActive: boolean
-  ): void => {
-    setProgressBars((prevProgressBars) => {
-      const updatedProgressBars = [...prevProgressBars];
-      updatedProgressBars[index] = {
-        ...updatedProgressBars[index],
-        active: newActive,
-        value: newValue,
-      };
-      return updatedProgressBars;
-    });
-  };
+  const [progressBars, setProgressBars] = useState({
+    type: "progressBar1",
+    value: 0,
+  });
+  const progressBarTypes = ["progressBar1", "progressBar2", "progressBar3"];
   function handleProgressBars(): void {
-    if (progressBars[0].value <= 100 && progressBars[0].active) {
-      updateProgressBar(0, progressBars[0].value + 0.5, true);
-    } else {
-      updateProgressBar(0, 0, false);
-      updateProgressBar(1, progressBars[1].value, true);
-    }
-    if (progressBars[0].active) {
-      return;
-    }
-    if (progressBars[1].value <= 100 && progressBars[1].active) {
-      updateProgressBar(1, progressBars[1].value + 0.5, true);
-    } else {
-      updateProgressBar(1, 0, false);
-      updateProgressBar(2, progressBars[2].value + 0.5, true);
-    }
-    if (progressBars[1].active) {
-      return;
-    }
-    if (progressBars[2].value <= 100 && progressBars[2].active) {
-      updateProgressBar(2, progressBars[2].value + 0.5, true);
-    } else {
-      updateProgressBar(2, 0, false);
-      updateProgressBar(0, progressBars[0].value + 0.5, true);
-    }
-    if (progressBars[2].active) {
-      return;
+    let currentIndex = progressBarTypes.indexOf(progressBars.type);
+    for (const type of progressBarTypes) {
+      const nextIndex = (currentIndex + 1) % progressBarTypes.length;
+      if (progressBars.type === type && progressBars.value < 100) {
+        setProgressBars({
+          type,
+          value: progressBars.value + 0.5,
+        });
+      } else {
+        const nextType = progressBarTypes[nextIndex];
+        setProgressBars({
+          type: nextType,
+          value: 0,
+        });
+      }
+      if (progressBars.type === type) {
+        return;
+      }
+      currentIndex = nextIndex;
     }
   }
+
   function handleImageSwitch(id: number): void {
     setCurrentImage({
       ...currentImage,
@@ -79,6 +50,7 @@ export function Home(): JSX.Element {
       });
     }, 300);
   }
+
   useEffect(() => {
     const id = setInterval(handleProgressBars, 35);
     return () => {
@@ -87,31 +59,25 @@ export function Home(): JSX.Element {
   });
 
   useEffect(() => {
-    for (let i = 0; i <= 2; i++) {
-      if (progressBars[i].active) {
+    for (let i = 0; i <= progressBarTypes.length - 1; i++) {
+      if (progressBars.type === progressBarTypes[i]) {
         handleImageSwitch(i + 1);
       }
     }
-  }, [progressBars[0].active, progressBars[1].active, progressBars[2].active]);
+  }, [progressBars.type]);
 
-  const progressBar1Width = {
-    width: `${progressBars[0].value}%`,
+  const activeStyle = {
+    width: `${progressBars.value}%`,
+    className: "active",
   };
-  const progressBar2Width = {
-    width: `${progressBars[1].value}%`,
+  const inactiveStyle = {
+    width: "0%",
+    className: "inactive",
   };
-  const progressBar3Width = {
-    width: `${progressBars[2].value}%`,
+  // To handle MouseOvers
+  const handleProgressBar = (id: number): void => {
+    setProgressBars({ value: 0, type: progressBarTypes[id - 1] });
   };
-
-  const handleProgressBar = (index: number): void => {
-    const updates = [0, 0, 0];
-    updates[index] = progressBars[index].value + 0.5;
-    updateProgressBar(0, updates[0], index === 0);
-    updateProgressBar(1, updates[1], index === 1);
-    updateProgressBar(2, updates[2], index === 2);
-  };
-
   return (
     <>
       <header className={styles.header}>
@@ -150,16 +116,26 @@ export function Home(): JSX.Element {
             </div>
             <div className={styles.slider}>
               <div
-                className={styles[progressBars[0].active.toString()]}
+                className={
+                  progressBars.type === progressBarTypes[0]
+                    ? styles[activeStyle.className]
+                    : "inactive"
+                }
                 onFocus={() => {
-                  handleProgressBar(0);
+                  handleProgressBar(1);
                 }}
                 onMouseOver={() => {
-                  handleProgressBar(0);
+                  handleProgressBar(1);
                 }}
               >
                 <div className={styles.progressBarContainer}>
-                  <div style={progressBar1Width} />
+                  <div
+                    style={
+                      progressBars.type === progressBarTypes[0]
+                        ? activeStyle
+                        : inactiveStyle
+                    }
+                  />
                 </div>
                 <LinkIcon height={27} width={27} />
                 <div className={styles.shareALinkContent}>
@@ -172,16 +148,27 @@ export function Home(): JSX.Element {
                 </div>
               </div>
               <div
-                className={styles[progressBars[1].active.toString()]}
+                className={
+                  progressBars.type === progressBarTypes[1]
+                    ? styles[activeStyle.className]
+                    : "inactive"
+                }
                 onFocus={() => {
-                  handleProgressBar(1);
+                  handleProgressBar(2);
                 }}
                 onMouseOver={() => {
-                  handleProgressBar(1);
+                  handleProgressBar(2);
                 }}
               >
                 <div className={styles.progressBarContainer}>
-                  <div className={styles.pop} style={progressBar2Width} />
+                  <div
+                    className={styles.pop}
+                    style={
+                      progressBars.type === progressBarTypes[1]
+                        ? activeStyle
+                        : inactiveStyle
+                    }
+                  />
                 </div>
                 <ClickIcon height={27} width={27} />
                 <div className={styles.shareALinkContent}>
@@ -194,16 +181,26 @@ export function Home(): JSX.Element {
                 </div>
               </div>
               <div
-                className={styles[progressBars[2].active.toString()]}
+                className={
+                  progressBars.type === progressBarTypes[2]
+                    ? styles[activeStyle.className]
+                    : "inactive"
+                }
                 onFocus={() => {
-                  handleProgressBar(2);
+                  handleProgressBar(3);
                 }}
                 onMouseOver={() => {
-                  handleProgressBar(2);
+                  handleProgressBar(3);
                 }}
               >
                 <div className={styles.progressBarContainer}>
-                  <div style={progressBar3Width} />
+                  <div
+                    style={
+                      progressBars.type === progressBarTypes[2]
+                        ? activeStyle
+                        : inactiveStyle
+                    }
+                  />
                 </div>
                 <GroupIcon height={27} width={27} />
                 <div className={styles.shareALinkContent}>
@@ -215,7 +212,7 @@ export function Home(): JSX.Element {
                   </p>
                 </div>
               </div>
-              <Link href="#" className={styles.getStarted}>
+              <Link className={styles.getStarted} href="#">
                 <h3>
                   Get Started <ArrowIcon />
                 </h3>
