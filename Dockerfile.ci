@@ -1,0 +1,41 @@
+# syntax=docker/dockerfile:1
+
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Dockerfile reference guide at
+# https://docs.docker.com/engine/reference/builder/
+
+ARG NODE_VERSION=18.16.0
+ARG PNPM_VERSION=8.7.6
+
+FROM node:${NODE_VERSION}-alpine
+
+# Use production node environment by default.
+# ENV NODE_ENV production
+
+# Install pnpm.
+RUN --mount=type=cache,target=/root/.npm \
+    npm install -g pnpm@${PNPM_VERSION}
+
+WORKDIR /app
+
+# Copy package.json and pnpm-lock.yaml into the image.
+COPY ["package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml", "./"]
+COPY ["./apps/api/package.json", "./apps/api/"]
+COPY ["./apps/docs/package.json", "./apps/docs/"]
+COPY ["./apps/frontend/package.json", "./apps/frontend/"]
+COPY ["./packages/eslint-config-custom/package.json", "./packages/eslint-config-custom/"]
+COPY ["./packages/tsconfig/package.json", "./packages/tsconfig/"]
+COPY ["./packages/ui/package.json", "./packages/ui/"]
+
+RUN pnpm install
+
+# Copy the rest of the source files into the image.
+COPY . .
+
+RUN pnpm prettier
+
+RUN pnpm lint
+
+RUN pnpm build
+
+RUN pnpm test
