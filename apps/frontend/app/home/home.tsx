@@ -15,28 +15,28 @@ export function Home(): JSX.Element {
     value: 0,
   });
   const progressBarTypes = ["progressBar1", "progressBar2", "progressBar3"];
-  function handleProgressBars(): void {
-    let currentIndex = progressBarTypes.indexOf(progressBars.type);
-    for (const type of progressBarTypes) {
-      const nextIndex = (currentIndex + 1) % progressBarTypes.length;
-      if (progressBars.type === type && progressBars.value < 100) {
-        setProgressBars({
-          type,
-          value: progressBars.value + 0.5,
-        });
-      } else {
-        const nextType = progressBarTypes[nextIndex];
-        setProgressBars({
-          type: nextType,
-          value: 0,
-        });
-      }
-      if (progressBars.type === type) {
-        return;
-      }
-      currentIndex = nextIndex;
+function handleProgressBars(): void {
+  const { type, value } = progressBars;
+  if (value < 100) {
+    setProgressBars({
+      type: type,
+      value: value + 0.5,
+    });
+  } else {
+    let nextType: string;
+    if (type === "progressBar1") {
+      nextType = "progressBar2";
+    } else if (type === "progressBar2") {
+      nextType = "progressBar3";
+    } else {
+      nextType = "progressBar1";
     }
+    setProgressBars({
+      type: nextType,
+      value: 0,
+    });
   }
+}
 
   function handleImageSwitch(id: number): void {
     setCurrentImage({
