@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: 70rem;
   position: sticky;
   top: 0;
 }
@@ -24,7 +25,8 @@
   padding-top: 0.625rem;
 }
 
-.navOne :link {
+.navOne :link:nth-child(2) {
+  display: none;
   color: #808080;
   transition: ease 0.5s;
 }
@@ -35,6 +37,8 @@
 
 .navTwo {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: calc(var(--space-scale) * 2);
   margin-left: 5rem;
   padding-top: 0.625rem;
@@ -55,31 +59,182 @@
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  padding: 0.3125rem;
   background-color: var(--primary);
 }
 
-.navThree :link {
+.navTwo button:hover {
+  background-color: #f4ffcb;
+}
+
+.largeHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 8rem;
+    font-size: calc(var(--xx-large));
+  }
+
+  .smallHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: calc(var(--large));
+  }
+
+  .navThree  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+  }
+
+  .navThree :link  {
+    color: var(--primary);
+    font-size: calc(var(--large));
+  }
+
+  .navThree :link:hover {
+    color: #f4ffcb;
+    text-decoration: underline;
+  }
+
+  .navThree :link:nth-child(2) {
+    margin-left: 0.5rem;
+  }
+
+  .mainNav {
+    background-color: #1d1d1d;
+    height: 4rem;
+    border-bottom: 1px solid #131313;
+  }
+
+  .videoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10rem;
+  }
+
+  .header {
+    background-image: linear-gradient(to top, black, black);
+    height: 180vh;
+  }
+
+@media (max-width: 1100px) {
+  .header nav {
   display: flex;
-  gap: calc(var(--space-scale) * 3);
-  color: #808080;
+  align-items: center;
+  justify-content: space-around;
+  gap: 35rem;
+  position: sticky;
+  top: 0;
+ }
+
+ .navOne :link:nth-child(2) {
+  display: block;
+ }
+
+ .largeHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 8rem;
+    font-size: calc(var(--xx-large));
+  }
+
+  .smallHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: calc(var(--large));
+  }
+
+  .navThree  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+  }
+
+  .navThree :link  {
+    color: var(--primary);
+    font-size: calc(var(--large));
+  }
+
+  .mainNav {
+    background-color: #1d1d1d;
+    height: 7rem;
+    border-bottom: 1px solid #131313;
+  }
+
+  .videoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header {
+    background-image: linear-gradient(to top, #161521, black);
+    height: 120vh;
+  }
 }
 
-.navThree button {
-  border-radius: 20px;
-  background-color: #644ed7;
-  color: var(--white);
-  border: none;
+@media (max-width: 550px) {
+  .largeHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 8rem;
+    font-size: calc(var(--larger));
+  }
+
+  .navOne :link:nth-child(2) {
+  display: block;
+ }
+
+  .smallHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .navThree  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+  }
+
+  .navThree :link  {
+    color: var(--primary);
+  }
+
+  .mainNav {
+    background-color: #1d1d1d;
+    height: 4rem;
+    border-bottom: 1px solid #131313;
+  }
+
+  .videoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header {
+    background-image: linear-gradient(to top, #161521, black);
+    height: 120vh;
+  }
 }
 
-.navFour :link {
-  color: var(--primary);
-  margin-left: 9.375rem;
-}
 
-.navFour :link:hover {
-  color: #f5fadc;
-  text-decoration: underline;
-}
 
 
 /* ========================= Header section styles - END ===================================== */
