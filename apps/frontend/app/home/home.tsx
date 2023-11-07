@@ -8,22 +8,32 @@ export function Home(): JSX.Element {
     <>
       <header className={styles.header}>
         <nav className={styles.mainNav}>
-           <div className={styles.navOne}>
+          <div className={styles.navOne}>
             <Link href="/">
-            <Image alt="logo" height={24} src="/logo.svg" width={24} />
-          </Link>
-            <Link href="#">DevSandbox</Link> 
+              <Image alt="logo" height={24} src="/logo.svg" width={24} />
+            </Link>
+            <Link href="#">DevSandbox</Link>
           </div>
           <div className={styles.navTwo}>
-          <Link href="#">Sign in</Link>
-          <Link href="#"><button type="submit">Try for free</button></Link>
+            <Link href="#">Sign in</Link>
+            <Link href="#">
+              <button type="submit">Try for free</button>
+            </Link>
           </div>
         </nav>
-        <div className={styles.largeHeader}><h1>Code in</h1><h1>Sandboxes</h1></div> 
-        <div className={styles.smallHeader}><p>Prototype your ideas with shareable</p><p>and secure cloud sandboxes.</p></div>
+        <div className={styles.largeHeader}>
+          <h1>Code in</h1>
+          <h1>Sandboxes</h1>
+        </div>
+        <div className={styles.smallHeader}>
+          <p>Prototype your ideas with shareable</p>
+          <p>and secure cloud sandboxes.</p>
+        </div>
         <div className={styles.navThree}>
           <Link href="#">Create sandbox </Link>
-          <Link href="#"><ChevronRight /></Link>
+          <Link href="#">
+            <ChevronRight />
+          </Link>
         </div>
         <div className={styles.videoContainer}>
           <video width="90%" height="100%" autoPlay loop muted>
