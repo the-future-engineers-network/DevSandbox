@@ -83,8 +83,8 @@ importers:
         specifier: ^18.2.31
         version: 18.2.31
       '@types/react-dom':
-        specifier: ^18.0.7
-        version: 18.2.3
+        specifier: ^18.2.17
+        version: 18.2.17
       eslint-config-custom:
         specifier: workspace:*
         version: link:../../packages/eslint-config-custom
@@ -120,8 +120,8 @@ importers:
         specifier: ^18.2.31
         version: 18.2.31
       '@types/react-dom':
-        specifier: ^18.0.7
-        version: 18.2.3
+        specifier: ^18.2.17
+        version: 18.2.17
       eslint-config-custom:
         specifier: workspace:*
         version: link:../../packages/eslint-config-custom
@@ -155,8 +155,8 @@ importers:
         specifier: ^18.2.31
         version: 18.2.31
       '@types/react-dom':
-        specifier: ^18.2.0
-        version: 18.2.3
+        specifier: ^18.2.17
+        version: 18.2.17
       eslint-config-custom:
         specifier: workspace:*
         version: link:../eslint-config-custom
@@ -814,8 +814,8 @@ packages:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
     dev: true
 
-  /@types/react-dom@18.2.3:
-    resolution: {integrity: sha512-hxXEXWxFJXbY0LMj/T69mznqOZJXNtQMqVxIiirVAZnnpeYiD4zt+lPsgcr/cfWg2VLsxZ1y26vigG03prYB+Q==}
+  /@types/react-dom@18.2.17:
+    resolution: {integrity: sha512-rvrT/M7Df5eykWFxn6MYt5Pem/Dbyc1N8Y0S9Mrkw2WFCRiqUgw9P7ul2NpwsXCSM1DVdENzdG9J5SreqfAIWg==}
     dependencies:
       '@types/react': 18.2.31
     dev: true
